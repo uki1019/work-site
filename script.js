@@ -359,12 +359,12 @@ const observer = new IntersectionObserver((entries) => {
 // 要素を監視
 document.addEventListener('DOMContentLoaded', () => {
     // 滚动动画元素
-    const animateElements = document.querySelectorAll('.profile-content, .section-title, .work-card, .profile-motto, .profile-interests, .profile-skills, .profile-info');
+    const animateElements = document.querySelectorAll('.profile-content, .section-title, .work-card, .profile-motto, .profile-interests, .profile-skills, .profile-info, .contact-text, .contact-info');
     
     animateElements.forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `all 0.8s ease ${index * 0.1}s`;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = `all 0.25s ease ${index * 0.02}s`;
         observer.observe(el);
     });
     
