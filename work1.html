@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャンプ日和公式サイト - PORTFOLIO</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .work-detail-page {
+            min-height: 100vh;
+            padding: 120px 5% 80px;
+            background-color: #FFFFFF;
+        }
+        
+        .work-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .back-button:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+        
+        .work-detail-header {
+            margin-bottom: 3rem;
+        }
+        
+        .work-detail-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .work-detail-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .work-detail-images {
+            margin-bottom: 4rem;
+        }
+        
+        /* 主图展示 */
+        .work-hero-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 3rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .work-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: repeat(4, auto);
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: start;
+        }
+        
+        .thumbnail-item {
+            cursor: pointer;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        
+        /* 中间大图占据4行 */
+        .thumbnail-item:nth-child(1) {
+            grid-column: 2;
+            grid-row: 1 / 5;
+        }
+        
+        /* 左侧三张 */
+        .thumbnail-item:nth-child(2) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        
+        .thumbnail-item:nth-child(3) {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        .thumbnail-item:nth-child(4) {
+            grid-column: 1;
+            grid-row: 3;
+        }
+        
+        /* 右侧三张 */
+        .thumbnail-item:nth-child(5) {
+            grid-column: 3;
+            grid-row: 1;
+        }
+        
+        .thumbnail-item:nth-child(6) {
+            grid-column: 3;
+            grid-row: 2;
+        }
+        
+        .thumbnail-item:nth-child(7) {
+            grid-column: 3;
+            grid-row: 3;
+        }
+        
+        .thumbnail-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .thumbnail-image {
+            width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: contain;
+            display: block;
+            background: #fafafa;
+        }
+        
+        /* 中间大图的高度 */
+        .thumbnail-item:nth-child(1) .thumbnail-image {
+            max-height: 1200px;
+        }
+        
+        .thumbnail-caption {
+            padding: 1rem 0;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            border-top: none;
+        }
+
+        .view-site-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+        }
+
+        .view-site-button:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        @media (max-width: 1024px) {
+            .thumbnail-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .thumbnail-item:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: auto;
+            }
+            
+            .thumbnail-item:nth-child(1) .thumbnail-image {
+                height: 300px;
+            }
+            
+            .thumbnail-item:nth-child(2),
+            .thumbnail-item:nth-child(3),
+            .thumbnail-item:nth-child(4),
+            .thumbnail-item:nth-child(5) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .thumbnail-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .thumbnail-item:nth-child(1) {
+                grid-column: 1;
+            }
+        }
+        
+        /* 灯箱弹窗 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: auto;
+            padding: 2rem;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            display: block;
+            margin: auto;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .lightbox-close {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+        
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .lightbox-nav:hover {
+            color: var(--primary-color);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .lightbox-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+        }
+        
+        .work-detail-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+        
+        .work-detail-description {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text-dark);
+        }
+        
+        .work-detail-info {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            height: fit-content;
+        }
+        
+        .work-info-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .work-info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .work-info-label {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .work-info-value {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .work-detail-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .work-detail-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navbar">
+        <div class="nav-logo">PORTFOLIO</div>
+        <ul class="nav-menu">
+            <li><a href="index.html#home" class="nav-link">HOME</a></li>
+            <li><a href="index.html#works" class="nav-link">WORKS</a></li>
+            <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- 作品详情内容 -->
+    <div class="work-detail-page">
+        <div class="work-detail-container">
+            <a href="index.html" class="back-button">
+                ← 作品一覧に戻る
+            </a>
+            
+            <div class="work-detail-header">
+                <h1 class="work-detail-title">キャンプ日和公式サイト</h1>
+                <div class="work-detail-meta">
+                    <span>WEBデザイン</span>
+                    <span>|</span>
+                    <span>個人</span>
+                    <span>|</span>
+                    <span>2026</span>
+                </div>
+            </div>
+            
+            <div class="work-detail-images">
+                <!-- 主图展示 -->
+                <div class="work-hero-image">
+                    <img src="image/zuopin1-1.png" alt="キャンプ日和 メインビジュアル">
+                </div>
+                
+                <h2 style="font-size: 1.5rem; margin-bottom: 2rem; margin-top: 3rem; color: var(--primary-color);">ページ一覧</h2>
+                <div class="thumbnail-grid">
+                    <div class="thumbnail-item" onclick="openLightbox(0)">
+                        <img src="image/zuopin1-1-1.jpg" alt="トップページ" class="thumbnail-image">
+                        <p class="thumbnail-caption">01. トップページ</p>
+                    </div>
+                    
+                    <div class="thumbnail-item" onclick="openLightbox(1)">
+                        <img src="image/zuopin1-1-2.png" alt="万博" class="thumbnail-image">
+                        <p class="thumbnail-caption">02. CONCEPTページ</p>
+                    </div>
+                    
+                    <div class="thumbnail-item" onclick="openLightbox(2)">
+                        <img src="image/zuopin1-1-3.png" alt="会員イベント" class="thumbnail-image">
+                        <p class="thumbnail-caption">03. CHILLイベントページ</p>
+                    </div>
+                    
+                    <div class="thumbnail-item" onclick="openLightbox(3)">
+                        <img src="image/zuopin1-1-4.png" alt="ロゴマーク" class="thumbnail-image">
+                        <p class="thumbnail-caption">04. GUESTBOOKページ</p>
+                    </div>
+                    
+                    <div class="thumbnail-item" onclick="openLightbox(4)">
+                        <img src="image/zuopin1-1-5.png" alt="デザインコンセプト" class="thumbnail-image">
+                        <p class="thumbnail-caption">05. TICKETページ</p>
+                    </div>
+                    
+                    <div class="thumbnail-item" onclick="openLightbox(5)">
+                        <img src="image/zuopin1-1-6.png" alt="機能紹介" class="thumbnail-image">
+                        <p class="thumbnail-caption">06. TICKETページ</p>
+                    </div>
+                    
+                    <div class="thumbnail-item" onclick="openLightbox(6)">
+                        <img src="image/zuopin1-1-7.png" alt="お問い合わせ" class="thumbnail-image">
+                        <p class="thumbnail-caption">07. TICKETページ</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 灯箱弹窗 -->
+            <div id="lightbox" class="lightbox">
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</span>
+                <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</span>
+                <img class="lightbox-content" id="lightbox-img">
+                <div class="lightbox-counter" id="lightbox-counter"></div>
+            </div>
+            
+            <div class="work-detail-content">
+                <div class="work-detail-description">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary-color);">プロジェクト概要</h2>
+                    <p>
+                        日常から少し離れ、自然の中で心と身体を整える体験をテーマにした、架空のキャンプイベント公式サイトです。
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        ユーザーが気軽にキャンプの情報を探し、体験内容を理解し、スムーズに予約まで進めることができるよう設計しました。
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        視覚的な魅力だけでなく、情報の分かりやすさと操作のしやすさを意識して制作しています。
+                    </p>
+                    
+                    <h2 style="font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--primary-color);">デザインのポイント</h2>
+                    <ul style="list-style: disc; padding-left: 1.5rem; line-height: 2;">
+                        <li>自然を感じられる落ち着いた配色設計</li>
+                        <li>直感的に操作できるシンプルなナビゲーション</li>
+                        <li>ゲストブック機能によるユーザー同士の交流設計</li>
+                    </ul>
+
+                    <h2 style="font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--primary-color);">工夫した点（加分項）</h2>
+                    <ul style="list-style: disc; padding-left: 1.5rem; line-height: 2;">
+                        <li>ユーザー視点で情報整理を行い、導線設計を意識しました</li>
+                        <li>コンセプトページではブランドイメージを統一</li>
+                        <li>予約ページではステップ形式を採用し、迷わないUI設計を実装しました</li>
+                    </ul>
+                </div>
+                
+                <div class="work-detail-info">
+                    <div style="margin-bottom: 2.5rem;">
+                        <a href="https://uki1019.github.io/camp-hiyori/" target="_blank" rel="noopener noreferrer"
+                           class="view-site-button">
+                            Webサイトを見る →
+                        </a>
+                    </div>
+                    <div class="work-info-item">
+                        <div class="work-info-label">使用ツール</div>
+                        <div class="work-info-value">Figma / HTML / CSS / JavaScript</div>
+                    </div>
+                    
+                    <div class="work-info-item">
+                        <div class="work-info-label">制作期間</div>
+                        <div class="work-info-value">約3ヶ月</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // 灯箱功能
+        const images = [
+            'image/zuopin1-1-1.jpg',
+            'image/zuopin1-1-2.png',
+            'image/zuopin1-1-3.png',
+            'image/zuopin1-1-4.png',
+            'image/zuopin1-1-5.png',
+            'image/zuopin1-1-6.png',
+            'image/zuopin1-1-7.png'
+        ];
+        
+        let currentIndex = 0;
+        
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            
+            lightbox.classList.add('active');
+            img.src = images[currentIndex];
+            counter.textContent = `${currentIndex + 1} / ${images.length}`;
+            document.body.style.overflow = 'hidden';
+            
+            // 添加图片加载错误处理
+            img.onerror = function() {
+                console.error('图片加载失败:', images[currentIndex]);
+                alert('图片加载失败: ' + images[currentIndex] + '\n请确认图片文件存在于image文件夹中');
+            };
+            
+            img.onload = function() {
+                console.log('图片加载成功:', images[currentIndex]);
+            };
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            img.src = images[currentIndex];
+            counter.textContent = `${currentIndex + 1} / ${images.length}`;
+        }
+        
+        // 键盘导航
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') changeImage(-1);
+                if (e.key === 'ArrowRight') changeImage(1);
+            }
+        });
+        
+        // 点击背景关闭
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
