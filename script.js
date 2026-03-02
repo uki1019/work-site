@@ -70,7 +70,7 @@ const worksData = [
     {
         id: 5,
         title: "かき氷おじさん",
-        category: "graphic",
+        category: "uiux",
         year: "2025",
         tags: ["グループ"],
         thumbnail: "image/work5-1.jpg",
@@ -87,7 +87,7 @@ const worksData = [
         category: "graphic",
         year: "2025",
         tags: ["個人"],
-        thumbnail: "image/work7-1.JPG",
+        thumbnail: "image/work7fengmian.png",
         images: [
             "image/work7-1.JPG",
             "image/work7-2.JPG",
@@ -187,6 +187,7 @@ function createWorkCard(work, index) {
     // 根据不同的category分配不同的颜色
     const tagColors = {
         'web': 'blue',
+        'uiux': 'purple',
         'graphic': 'green',
         'other': 'orange'
     };
@@ -221,7 +222,8 @@ function createWorkCard(work, index) {
 function getCategoryName(category) {
     const categoryNames = {
         'web': 'WEBデザイン',
-        'graphic': 'UIUX Design',
+        'uiux': 'UIUXデザイン',
+        'graphic': 'グラフィックデザイン',
         'other': 'Other'
     };
     return categoryNames[category] || category;

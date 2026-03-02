@@ -963,6 +963,11 @@ button {
     color: #E8A56E;
 }
 
+.work-tag.purple {
+    border-color: #A78BBA;
+    color: #A78BBA;
+}
+
 .work-tag.pink {
     border-color: var(--primary-color);
     color: var(--primary-color);
@@ -1172,25 +1177,14 @@ button {
     color: var(--text-light);
 }
 
-.contact-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1.2rem 3rem;
-    background-color: var(--primary-color);
-    color: var(--bg-white);
-    border-radius: 50px;
-    font-size: 1.05rem;
-    font-weight: 400;
-    transition: var(--transition);
-    box-shadow: 0 5px 20px rgba(232, 165, 165, 0.3);
-}
-
-.contact-btn:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(232, 165, 165, 0.4);
+.contact-email {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 0.08em;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
 }
 
 /* ========================================
