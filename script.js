@@ -83,6 +83,30 @@ const worksData = [
     },
     {
         id: 6,
+        title: "ラーメンの好みを可視化するキャラクター設計",
+        category: "graphic",
+        year: "2025",
+        tags: ["個人"],
+        thumbnail: "image/work7-1.JPG",
+        images: [
+            "image/work7-1.JPG",
+            "image/work7-2.JPG",
+            "image/work7-3.JPG",
+            "image/work7-4.JPG",
+            "image/work7-5.JPG",
+            "image/work7-6.JPG",
+            "image/work7-9.JPG",
+            "image/work7-10.PNG",
+            "image/work7-11.JPG"
+        ],
+        description: "ラーメンの好みを視覚的なキャラクターへと変換することをテーマに制作したデザイン研究プロジェクトです。",
+        tools: "Procreate / Photoshop",
+        duration: "3ヶ月",
+        role: "コンセプト設計 / キャラクターデザイン / ビジュアル制作",
+        url: "work7.html"
+    },
+    {
+        id: 7,
         title: "Other Works",
         category: "other",
         year: "2016-",
@@ -505,6 +529,42 @@ window.addEventListener('load', () => {
         observeWorkCards.observe(card);
     });
 });
+
+// ========================================
+// 作品カードホバーサークル追従
+// ========================================
+(function() {
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-circle';
+    cursor.innerHTML = '見る';
+    document.body.appendChild(cursor);
+    
+    let isOnCard = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+    
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest('.work-card')) {
+            isOnCard = true;
+            cursor.classList.add('active');
+        }
+    });
+    
+    document.addEventListener('mouseout', (e) => {
+        const card = e.target.closest('.work-card');
+        if (card && !card.contains(e.relatedTarget)) {
+            isOnCard = false;
+            cursor.classList.remove('active');
+        }
+    });
+})();
 
 // ========================================
 // コンソールメッセージ
