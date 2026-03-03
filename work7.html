@@ -88,7 +88,7 @@
         }
         
         .sub-image-item {
-            width: calc(33.333% - 0.7rem);
+            width: calc(25% - 0.75rem);
             cursor: pointer;
             border-radius: 12px;
             overflow: hidden;
@@ -106,6 +106,38 @@
         .sub-image-item:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+        }
+        
+        .ramen-image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ramen-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .ramen-image-wrapper:hover .ramen-overlay {
+            opacity: 1;
+        }
+        
+        .ramen-description {
+            color: #fff;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            text-align: center;
+            letter-spacing: 0.03em;
         }
         
         .sub-image-caption {
@@ -220,12 +252,6 @@
             }
             
             .sub-image-item {
-                width: calc(33.333% - 0.7rem);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .sub-image-item {
                 width: calc(50% - 0.5rem);
             }
         }
@@ -279,93 +305,119 @@
                 <!-- ラーメン＆キャラクター対応一覧 -->
                 <h2 style="font-size: 1.5rem; margin-bottom: 2rem; margin-top: 3rem; color: var(--primary-color);">ラーメン＆キャラクター</h2>
                 
-                <!-- 第1組 (1-3) -->
+                <!-- 第1組 (1-4) -->
                 <div class="sub-image-list">
                     <div class="sub-image-item" onclick="openLightbox(0)">
-                        <img src="image/work7-1.JPG" alt="ラーメン1">
-                        <p class="sub-image-caption">01. ラーメン</p>
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-1.JPG" alt="ラーメン1">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">魚介ダシの効いた甘みのある和風醤油スープ。落ち着きがありながら芯の強い王道タイプ。流行を生み出した存在感と、どこか職人気質な重厚さを持つ。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">01. 麺屋武蔵系ラーメン</p>
                     </div>
                     <div class="sub-image-item" onclick="openLightbox(1)">
-                        <img src="image/work7-2.JPG" alt="ラーメン2">
-                        <p class="sub-image-caption">02. ラーメン</p>
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-10.PNG" alt="ラーメン2">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">上品な鶏スープに力強い和風ダシが重なるように、柔らかさの中にしっかりとした芯を持つタイプ。丁寧に炙られたチャーシューのように、細部までこだわる繊細さが魅力。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">02. 中村屋系ラーメン</p>
                     </div>
                     <div class="sub-image-item" onclick="openLightbox(2)">
-                        <img src="image/work7-3.JPG" alt="ラーメン3">
-                        <p class="sub-image-caption">03. ラーメン</p>
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-2.JPG" alt="ラーメン3">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">鶏白湯のまろやかさのような優しさを持ちながら、味噌のように少し個性を主張するタイプ。シンプルに見えて奥行きがあり、じわじわと惹きつける存在。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">03. 鶏そば系ラーメン</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(3)">
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-4.JPG" alt="ラーメン4">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">動物系と魚介ダシが重なる濃厚スープのように、第一印象から強い存在感を放つタイプ。魚粉のようにアクセントが効いており、情熱的でエネルギッシュな性格。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">04. 濃厚魚介系ラーメン</p>
+                    </div>
+                </div>
+                <div class="sub-image-list" style="margin-top: 0.5rem; margin-bottom: 2.5rem;">
+                    <div class="sub-image-item" onclick="openLightbox(8)">
+                        <img src="image/work7-1-4.JPG" alt="キャラクター1">
+                        <p class="sub-image-caption">01. 麺屋武蔵系キャラクター</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(9)">
+                        <img src="image/work7-1-2.JPG" alt="キャラクター2">
+                        <p class="sub-image-caption">02. 中村屋系ンキャラクター</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(10)">
+                        <img src="image/work7-1-9.JPG" alt="キャラクター3">
+                        <p class="sub-image-caption">03. 鶏そば系キャラクター</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(11)">
+                        <img src="image/work7-1-1.JPG" alt="キャラクター4">
+                        <p class="sub-image-caption">04. 濃厚魚介系キャラクター</p>
+                    </div>
+                </div>
+                
+                <!-- 第2組 (5-8) -->
+                <div class="sub-image-list">
+                    <div class="sub-image-item" onclick="openLightbox(4)">
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-11.JPG" alt="ラーメン5">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">名前の通り少し近寄りがたいが、芯は真っ直ぐな職人タイプ。しょっぱいスープのように強い個性を持ちながら、ほろほろチャーシューのような優しさも隠れている。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">05. がんこ系ラーメン</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(5)">
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-6.JPG" alt="ラーメン6">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">濃厚な豚骨醤油のようにインパクト抜群で、一度ハマると抜け出せない存在。豪快でエネルギッシュ、周囲を巻き込む熱量を持つカリスマタイプ。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">06. 二郎系ラーメン</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(6)">
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-9.JPG" alt="ラーメン7">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">動物系と魚介系が重なるスープのように、優しくも奥行きのある性格。主張しすぎないが、最後まで心地よく寄り添うバランス型のキャラクター。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">07. たんたん亭系ラーメン</p>
+                    </div>
+                    <div class="sub-image-item" onclick="openLightbox(7)">
+                        <div class="ramen-image-wrapper">
+                            <img src="image/work7-3.JPG" alt="ラーメン8">
+                            <div class="ramen-overlay">
+                                <p class="ramen-description">濃厚な豚骨醤油の安心感を持つ、頼れる王道タイプ。好みに合わせて変化できる柔軟さがありながら、芯はぶれない安定感が魅力。</p>
+                            </div>
+                        </div>
+                        <p class="sub-image-caption">08. 家系ラーメン</p>
                     </div>
                 </div>
                 <div class="sub-image-list" style="margin-top: 0.5rem; margin-bottom: 2.5rem;">
                     <div class="sub-image-item" onclick="openLightbox(12)">
-                        <img src="image/work7-1-4.JPG" alt="キャラクター1">
-                        <p class="sub-image-caption">01. キャラクター</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(10)">
-                        <img src="image/work7-1-2.JPG" alt="キャラクター2">
-                        <p class="sub-image-caption">02. キャラクター</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(17)">
-                        <img src="image/work7-1-9.JPG" alt="キャラクター3">
-                        <p class="sub-image-caption">03. キャラクター</p>
-                    </div>
-                </div>
-                
-                <!-- 第2組 (4-6) -->
-                <div class="sub-image-list">
-                    <div class="sub-image-item" onclick="openLightbox(3)">
-                        <img src="image/work7-4.JPG" alt="ラーメン4">
-                        <p class="sub-image-caption">04. ラーメン</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(4)">
-                        <img src="image/work7-5.JPG" alt="ラーメン5">
-                        <p class="sub-image-caption">05. ラーメン</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(5)">
-                        <img src="image/work7-6.JPG" alt="ラーメン6">
-                        <p class="sub-image-caption">06. ラーメン</p>
-                    </div>
-                </div>
-                <div class="sub-image-list" style="margin-top: 0.5rem; margin-bottom: 2.5rem;">
-                    <div class="sub-image-item" onclick="openLightbox(9)">
-                        <img src="image/work7-1-1.JPG" alt="キャラクター4">
-                        <p class="sub-image-caption">04. キャラクター</p>
+                        <img src="image/work7-1-5.JPG" alt="キャラクター5">
+                        <p class="sub-image-caption">05. がんこ系キャラクター</p>
                     </div>
                     <div class="sub-image-item" onclick="openLightbox(13)">
-                        <img src="image/work7-1-5.JPG" alt="キャラクター5">
-                        <p class="sub-image-caption">05. キャラクター</p>
+                        <img src="image/work7-1-6.JPG" alt="キャラクター6">
+                        <p class="sub-image-caption">06. 二郎系キャラクター</p>
                     </div>
                     <div class="sub-image-item" onclick="openLightbox(14)">
-                        <img src="image/work7-1-6.JPG" alt="キャラクター6">
-                        <p class="sub-image-caption">06. キャラクター</p>
-                    </div>
-                </div>
-                
-                <!-- 第3組 (7-9) -->
-                <div class="sub-image-list">
-                    <div class="sub-image-item" onclick="openLightbox(6)">
-                        <img src="image/work7-9.JPG" alt="ラーメン7">
-                        <p class="sub-image-caption">07. ラーメン</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(7)">
-                        <img src="image/work7-10.PNG" alt="ラーメン8">
-                        <p class="sub-image-caption">08. ラーメン</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(8)">
-                        <img src="image/work7-11.JPG" alt="ラーメン9">
-                        <p class="sub-image-caption">09. ラーメン</p>
-                    </div>
-                </div>
-                <div class="sub-image-list" style="margin-top: 0.5rem; margin-bottom: 2.5rem;">
-                    <div class="sub-image-item" onclick="openLightbox(11)">
                         <img src="image/work7-1-3.JPG" alt="キャラクター7">
-                        <p class="sub-image-caption">07. キャラクター</p>
-                    </div>
-                    <div class="sub-image-item" onclick="openLightbox(16)">
-                        <img src="image/work7-1-8.JPG" alt="キャラクター8">
-                        <p class="sub-image-caption">08. キャラクター</p>
+                        <p class="sub-image-caption">07. たんたん亭系キャラクター</p>
                     </div>
                     <div class="sub-image-item" onclick="openLightbox(15)">
-                        <img src="image/work7-1-7.JPG" alt="キャラクター9">
-                        <p class="sub-image-caption">09. キャラクター</p>
+                        <img src="image/work7-1-7.JPG" alt="キャラクター8">
+                        <p class="sub-image-caption">08. 家系キャラクター</p>
                     </div>
                 </div>
                 
@@ -480,23 +532,21 @@
     <script>
         const images = [
             'image/work7-1.JPG',
+            'image/work7-10.PNG',
             'image/work7-2.JPG',
-            'image/work7-3.JPG',
             'image/work7-4.JPG',
-            'image/work7-5.JPG',
+            'image/work7-11.JPG',
             'image/work7-6.JPG',
             'image/work7-9.JPG',
-            'image/work7-10.PNG',
-            'image/work7-11.JPG',
-            'image/work7-1-1.JPG',
-            'image/work7-1-2.JPG',
-            'image/work7-1-3.JPG',
+            'image/work7-3.JPG',
             'image/work7-1-4.JPG',
+            'image/work7-1-2.JPG',
+            'image/work7-1-9.JPG',
+            'image/work7-1-1.JPG',
             'image/work7-1-5.JPG',
             'image/work7-1-6.JPG',
+            'image/work7-1-3.JPG',
             'image/work7-1-7.JPG',
-            'image/work7-1-8.JPG',
-            'image/work7-1-9.JPG',
             'image/work7cao.JPG',
             'image/work7cao2.JPG',
             'image/work7gc1.JPG',
