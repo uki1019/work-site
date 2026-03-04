@@ -72,13 +72,13 @@ const worksData = [
         title: "かき氷おじさん",
         category: "uiux",
         year: "2025",
-        tags: ["グループ"],
+        tags: ["チーム制作"],
         thumbnail: "image/work5-1.jpg",
         images: ["image/work5-1.jpg", "image/work5-2.jpg", "image/work5-3.jpg", "image/work5-4.jpg"],
         description: "世界がますます暑くなり、終末の危機が迫る中、かき氷を愛するおじさんが“食べること”で自らを救おうとする物語です。",
         tools: "figma / Photoshop",
         duration: "1ヶ月",
-        role: "イベントデザイン / グラフィック",
+        role: "UIUXデザイン / キャラクターデザイン",
         url: "work5.html"
     },
     {
@@ -354,15 +354,15 @@ window.addEventListener('scroll', () => {
     
     if (scrollTop > lastScrollTop && scrollTop > 80) {
         // 向下滚动 - 隐藏导航栏
-        navbar.style.transform = 'translateY(-100%)';
+        navbar.style.transform = 'translate(-50%, -100%)';
     } else {
         // 向上滚动 - 显示导航栏
-        navbar.style.transform = 'translateY(0)';
+        navbar.style.transform = 'translate(-50%, 0)';
     }
     
     // 设置计时器,滚动停止后确保导航栏显示
     scrollTimer = setTimeout(() => {
-        navbar.style.transform = 'translateY(0)';
+        navbar.style.transform = 'translate(-50%, 0)';
     }, 1000);
     
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
